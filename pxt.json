@@ -1,5 +1,5 @@
 {
-    "name": "intro",
+    "name": "duet clone",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -10,7 +10,12 @@
         "README.md",
         "assets.json",
         "pxt.json",
-        "main.py"
+        "main.py",
+        "images.g.jres",
+        "images.g.ts",
+        "tilemap.g.jres",
+        "tilemap.g.ts",
+        "assets.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -22,5 +27,5 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
