@@ -1,6 +1,11 @@
 namespace SpriteKind {
     export const Background = SpriteKind.create()
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprite.startEffect(effects.disintegrate, 100)
+    pause(100)
+    game.gameOver(false)
+})
 function rotate (angle: number, sprite: Sprite) {
     angle = angle * Math.PI / 180
     let center = {x:64,y:200}
@@ -21,8 +26,8 @@ namespace userconfig {
     export const ARCADE_SCREEN_WIDTH = 128
     export const ARCADE_SCREEN_HEIGHT = 256
 }
-let reddot = sprites.create(assets.image`reddot`, SpriteKind.Background)
-let bluedot = sprites.create(assets.image`bluedot`, SpriteKind.Background)
+let reddot = sprites.create(assets.image`reddot`, SpriteKind.Player)
+let bluedot = sprites.create(assets.image`bluedot`, SpriteKind.Player)
 let circle = sprites.create(assets.image`circle`, SpriteKind.Background)
 circle.z = -10
 circle.sx = 1.05
@@ -32,6 +37,7 @@ reddot.setPosition(32, 200)
 bluedot.setPosition(96, 200)
 game.onUpdateInterval(Math.constrain(1000 - (difficulty + 100) * 3, 10, 1000), function () {
     obstacle = sprites.createProjectileFromSide(assets.image`obstacle`, 0, difficulty + 100)
+    obstacle.z = -5
     obstacle.setPosition(randint(32, 96), 0)
     obstacle.sx = randint(Math.map(Math.abs(64 - obstacle.x), 0, 64, 0.5, 0.8), 0.9)
     difficulty += 5
